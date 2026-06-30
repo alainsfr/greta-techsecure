@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero-banner" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('{{ url_for('static', filename='IMAGE/reseau.jpg') }}');">
+    <div class="hero-text">
+        <h1>Des solutions informatiques sécurisées pour votre entreprise</h1>
+        <p>Nous accompagnons les entreprises dans leur transformation digitale avec des services fiables, sécurisés et innovants.</p>
+        <a href="{{ url_for('services') }}" class="btn-primary">DÉCOUVRIR NOS SERVICES</a>
+    </div>
+</section>
+
+<section class="section-filiales">
+    <h2 class="section-title">NOS FILIALES</h2>
+    <div class="cards-grid">
+        <div class="card">
+            <img src="{{ url_for('static', filename='IMAGE/paris.jpg') }}" alt="Paris">
+            <h3>PARIS</h3>
+            <p class="subtitle">Siège social</p>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='IMAGE/lyon.jpg') }}" alt="Lyon">
+            <h3>LYON</h3>
+            <p class="subtitle">Agence régionale</p>
+        </div>
+        <div class="card">
+            <img src="{{ url_for('static', filename='IMAGE/marseille.jpg') }}" alt="Marseille">
+            <h3>MARSEILLE</h3>
+            <p class="subtitle">Agence régionale</p>
+        </div>
+    </div>
+</section>
+{% endblock %}
