@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="about-container">
+    <h1>À PROPOS DE NOUS</h1>
+    <div class="about-flex">
+        <div class="about-img-box">
+            <img src="{{ url_for('static', filename='IMAGE/entreprise.jpg') }}" alt="Équipe TechSecure">
+        </div>
+        <div class="about-text-box">
+            <p>TechSecure Solutions est une entreprise leader spécialisée dans la gestion et l'optimisation des infrastructures informatiques d'entreprise ainsi que dans l'audit et le déploiement de architectures cloud sécurisées.</p>
+            <p>Notre mission principale consiste à concevoir des architectures résilientes et hautement disponibles, répondant parfaitement aux contraintes réglementaires et aux exigences sécuritaires les plus strictes de nos clients.</p>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="services-container">
+    <h1 class="main-title">NOS SERVICES</h1>
+    <p class="section-desc">Découvrez nos expertises conçues pour accompagner votre infrastructure digitale.</p>
+    
+    <div class="services-grid">
+        <div class="service-card">
+            <img src="{{ url_for('static', filename='IMAGE/reseau.png') }}" alt="Admin Systèmes">
+            <h3>ADMINISTRATION SYSTÈMES</h3>
+            <p>Gestion et optimisation de vos infrastructures de serveurs et réseaux d'entreprise.</p>
+        </div>
+        <div class="service-card">
+            <img src="{{ url_for('static', filename='IMAGE/cyber.jpg') }}" alt="Cybersécurité">
+            <h3>CYBERSÉCURITÉ</h3>
+            <p>Protection de vos données et sécurisation de votre système d'information contre les cybermenaces.</p>
+        </div>
+        <div class="service-card">
+            <img src="{{ url_for('static', filename='IMAGE/reseau.jpg') }}" alt="Supervision">
+            <h3>SUPERVISION RÉSEAU</h3>
+            <p>Surveillance en temps réel de vos équipements et détection proactive des anomalies.</p>
+        </div>
+        <div class="service-card">
+            <img src="{{ url_for('static', filename='IMAGE/cloud.jpg') }}" alt="Cloud Computing">
+            <h3>CLOUD COMPUTING</h3>
+            <p>Solutions de cloud adaptées pour assurer la haute disponibilité et la scalabilité de vos applications.</p>
+        </div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat-item"><strong>150+</strong><p>Collaborateurs</p></div>
+        <div class="stat-item"><strong>3</strong><p>Agences en France</p></div>
+        <div class="stat-item"><strong>24/7</strong><p>Support technique</p></div>
+        <div class="stat-item"><strong>99.9%</strong><p>Disponibilité</p></div>
+    </div>
+</section>
+{% endblock %}
