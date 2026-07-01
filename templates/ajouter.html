@@ -1,29 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="form-container-box">
-    <h1>AJOUTER UNE FILIALE</h1>
-    <form action="{{ url_for('ajouter_filiale') }}" method="POST" class="secure-form">
-        <div class="form-group">
-            <label for="ville">Ville</label>
-            <input type="text" id="ville" name="ville" placeholder="Ex: Paris" required>
+
+<div class="section" style="max-width: 650px;">
+    <h1>Ajouter une Filiale</h1>
+    <p class="intro">Formulaire d'enregistrement sécurisé d'une nouvelle agence dans le système d'information centralisé.</p>
+    
+    <form method="POST" style="background: white; border: 1px solid var(--bordure); padding: 30px; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); display: grid; gap: 20px;">
+        
+        <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 8px; color: var(--bleu-nuit);">Nom de la ville / Agence</label>
+            <input type="text" name="ville" required style="width: 100%; padding: 12px; border: 1px solid var(--bordure); border-radius: 6px; font-size: 15px;">
         </div>
-        <div class="form-group">
-            <label for="adresse">Adresse</label>
-            <input type="text" id="adresse" name="adresse" placeholder="Ex: 102 Av. des Champs-Élysées" required>
+        
+        <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 8px; color: var(--bleu-nuit);">Adresse postale complète</label>
+            <input type="text" name="adresse" required style="width: 100%; padding: 12px; border: 1px solid var(--bordure); border-radius: 6px; font-size: 15px;">
         </div>
-        <div class="form-group">
-            <label for="responsable">Responsable</label>
-            <input type="text" id="responsable" name="responsable" placeholder="Ex: Jean Dupont" required>
+        
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
+            <div>
+                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: var(--bleu-nuit);">Nom du Responsable d'agence</label>
+                <input type="text" name="responsable" required style="width: 100%; padding: 12px; border: 1px solid var(--bordure); border-radius: 6px; font-size: 15px;">
+            </div>
+            <div>
+                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: var(--bleu-nuit);">Nombre d'employés</label>
+                <input type="number" name="employes" required min="1" style="width: 100%; padding: 12px; border: 1px solid var(--bordure); border-radius: 6px; font-size: 15px;">
+            </div>
         </div>
-        <div class="form-group">
-            <label for="employes">Nombre d'employés</label>
-            <input type="number" id="employes" name="employes" placeholder="Ex: 50" required>
+        
+        <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 8px; color: var(--bleu-nuit);">Adresse ou Plage IP Réseau</label>
+            <input type="text" name="ip" required placeholder="Ex: 192.168.10.0/24" style="width: 100%; padding: 12px; border: 1px solid var(--bordure); border-radius: 6px; font-size: 15px; font-family: monospace;">
         </div>
-        <div class="form-group">
-            <label for="ip">Adresse IP du routeur</label>
-            <input type="text" id="ip" name="ip" placeholder="Ex: 192.168.1.1" required>
+        
+        <div style="text-align: center; margin-top: 10px;">
+            <button type="submit" class="btn" style="width: 100%; padding: 14px;">Enregistrer l'agence avec sécurité SQL</button>
+            <a href="{{ url_for('filiales') }}" style="display: block; margin-top: 15px; color: #64748b; text-decoration: none; font-size: 14px;">← Retour au tableau de bord</a>
         </div>
-        <button type="submit" class="btn-submit">ENREGISTRER LA FILIALE</button>
+        
     </form>
-</section>
+</div>
+
 {% endblock %}

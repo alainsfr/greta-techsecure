@@ -1,15 +1,52 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="about-container">
-    <h1>À PROPOS DE NOUS</h1>
-    <div class="about-flex">
-        <div class="about-img-box">
-            <img src="{{ url_for('static', filename='IMAGE/entreprise.jpg') }}" alt="Équipe TechSecure">
+
+<div class="section" style="max-width: 700px;">
+    <h1>Contactez-nous</h1>
+    <p class="intro">Une question technique ou un projet de sécurisation ? Nos équipes d'ingénieurs vous répondent sous 24h.</p>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <form method="POST" style="background: white; border: 1px solid var(--bordure); padding: 30px; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); display: grid; gap: 15px;">
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+                <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Nom</label>
+                <input type="text" name="nom" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px;">
+            </div>
+            <div>
+                <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Prénom</label>
+                <input type="text" name="prenom" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px;">
+            </div>
         </div>
-        <div class="about-text-box">
-            <p>TechSecure Solutions est une entreprise leader spécialisée dans la gestion et l'optimisation des infrastructures informatiques d'entreprise ainsi que dans l'audit et le déploiement de architectures cloud sécurisées.</p>
-            <p>Notre mission principale consiste à concevoir des architectures résilientes et hautement disponibles, répondant parfaitement aux contraintes réglementaires et aux exigences sécuritaires les plus strictes de nos clients.</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+                <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Adresse Email</label>
+                <input type="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px;">
+            </div>
+            <div>
+                <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Téléphone</label>
+                <input type="tel" name="telephone" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px;">
+            </div>
         </div>
-    </div>
-</section>
+        
+        <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Votre message</label>
+            <textarea name="message" rows="5" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px; font-family: Arial, sans-serif; resize: vertical;"></textarea>
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px;">
+            <button type="submit" class="btn" style="width: 100%;">Envoyer la demande sécurisée</button>
+        </div>
+        
+    </form>
+</div>
+
 {% endblock %}

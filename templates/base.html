@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechSecure Solutions - Portail Interne</title>
+    <title>TechSecure Solutions</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo-area">
-                <img src="{{ url_for('static', filename='IMAGE/logo.png') }}" alt="TechSecure Logo" class="logo-img">
-            </div>
-            <ul class="nav-links">
-                <li><a href="{{ url_for('accueil') }}">Accueil</a></li>
-                <li><a href="{{ url_for('services') }}">Services</a></li>
-                <li><a href="{{ url_for('filiales') }}">Filiales</a></li>
-                <li><a href="{{ url_for('apropos') }}">À propos</a></li>
-                <li><a href="{{ url_for('contact') }}">Contact</a></li>
-            </ul>
+
+    <header class="navbar">
+        <div class="logo-zone">
+            <img src="{{ url_for('static', filename='IMAGE/logo.png') }}" alt="TechSecure Solutions">
+        </div>
+        <nav>
+            <a href="{{ url_for('accueil') }}">Accueil</a>
+            <a href="{{ url_for('services') }}">Services</a>
+            <a href="{{ url_for('filiales') }}">Filiales</a>
+            <a href="{{ url_for('apropos') }}">À propos</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
         </nav>
     </header>
 
-    <main class="container">
+    <main>
         {% block content %}{% endblock %}
     </main>
 
-    <footer>
-        <p>&copy; 2026 TechSecure Solutions - Site sécurisé avec Flask, MySQL et Docker</p>
+    <footer style="background-color: var(--bleu-nuit) !important; color: white !important; text-align: center !important; padding: 25px !important; margin-top: 50px !important; width: 100% !important; display: block !important;">
+        <p style="margin: 0; color: white !important;">&copy; 2026 TechSecure Solutions - Site sécurisé avec Flask, MySQL et Docker</p>
     </footer>
+
 </body>
 </html>

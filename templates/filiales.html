@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="section">
+    <div class="title-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h1 style="margin: 0; text-align: left;">Gestion des Filiales</h1>
+        <a href="{{ url_for('ajouter_filiale') }}" class="btn" style="display: inline-block; white-space: nowrap; font-size: 13px; padding: 10px 20px; height: auto;">+ Ajouter une agence</a>
+    </div>
+    
+    <p class="intro">Portail de centralisation des données techniques et des effectifs des différentes agences de TechSecure Solutions.</p>
+    
+    <table style="width: 100%; border-collapse: collapse; margin-top: 20px; background: white; border: 1px solid var(--bordure); border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+        <thead>
+            <tr style="background-color: var(--bleu-nuit); color: white; text-align: left;">
+                <th style="padding: 15px;">ID</th>
+                <th style="padding: 15px;">Ville / Agence</th>
+                <th style="padding: 15px;">Adresse postale</th>
+                <th style="padding: 15px;">Responsable d'agence</th>
+                <th style="padding: 15px;">Effectif</th>
+                <th style="padding: 15px;">Plage IP Réseau</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for filiale in filiales %}
+            <tr style="border-bottom: 1px solid var(--bordure); transition: background 0.2s;" onmouseover="this.style.background='#f8fafc'" onmouseout="this.style.background='transparent'">
+                <td style="padding: 15px; font-weight: bold; color: var(--bleu);">#{{ filiale.id }}</td>
+                <td style="padding: 15px; font-weight: bold;">{{ filiale.ville }}</td>
+                <td style="padding: 15px; color: #475569;">{{ filiale.adresse }}</td>
+                <td style="padding: 15px; font-weight: 500;">{{ filiale.responsable }}</td>
+                <td style="padding: 15px;"><span style="background: #e2e8f0; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: bold; white-space: nowrap;">{{ filiale.employes }} col.</span></td>
+                <td style="padding: 15px;"><code style="background: #f1f5f9; padding: 4px 8px; border-radius: 4px; color: #0f172a; font-family: monospace;">{{ filiale.ip }}</code></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="6" style="padding: 30px; text-align: center; color: #64748b;">Aucune filiale enregistrée dans la base de données.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="stats">
+        <div>
+            <strong>3</strong>
+            <span>Agences Actives</span>
+        </div>
+        <div>
+            <strong>150+</strong>
+            <span>Collaborateurs</span>
+        </div>
+        <div>
+            <strong>100%</strong>
+            <span>Données Centralisées</span>
+        </div>
+        <div>
+            <strong>🔒 Haute</strong>
+            <span>Disponibilité</span>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
