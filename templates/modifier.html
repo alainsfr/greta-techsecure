@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="section" style="max-width: 650px;">
+    <h1>Modifier la Filiale</h1>
+    <p class="intro">Formulaire de mise à jour sécurisé des données techniques de l'agence #{{ filiale.id }}.</p>
+    
+    <form method="POST" style="background: white; border: 1px solid var(--bordure); padding: 30px; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); display: grid; gap: 20px;">
+        
+        <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 8px; color: var(--bleu-nuit);">Nom de la ville / Agence</label>
+            <input type="text" name="ville" value="{{ filiale.ville }}" required style="width: 100%; padding: 12px; border: 1px solid var(--bordure); border-radius: 6px; font-size: 15px;">
+        </div>
+        
+        <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 8px; color: var(--bleu-nuit);">Adresse postale complète</label>
+            <input type="text" name="adresse" value="{{ filiale.adresse }}" required style="width: 100%; padding: 12px; border: 1px solid var(--bordure); border-radius: 6px; font-size: 15px;">
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 15px;">
+            <div>
+                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: var(--bleu-nuit);">Nom du Responsable d'agence</label>
+                <input type="text" name="responsable" value="{{ filiale.responsable }}" required style="width: 100%; padding: 12px; border: 1px solid var(--bordure); border-radius: 6px; font-size: 15px;">
+            </div>
+            <div>
+                <label style="display: block; font-weight: bold; margin-bottom: 8px; color: var(--bleu-nuit);">Nombre d'employés</label>
+                <input type="number" name="employes" value="{{ filiale.employes }}" required min="1" style="width: 100%; padding: 12px; border: 1px solid var(--bordure); border-radius: 6px; font-size: 15px;">
+            </div>
+        </div>
+        
+        <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 8px; color: var(--bleu-nuit);">Adresse ou Plage IP Réseau</label>
+            <input type="text" name="ip" value="{{ filiale.ip }}" required placeholder="Ex: 192.168.10.0/24" style="width: 100%; padding: 12px; border: 1px solid var(--bordure); border-radius: 6px; font-size: 15px; font-family: monospace;">
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px;">
+            <button type="submit" class="btn" style="width: 100%; padding: 14px;">Enregistrer les modifications</button>
+            <a href="{{ url_for('filiales') }}" style="display: block; margin-top: 15px; color: #64748b; text-decoration: none; font-size: 14px;">← Annuler et retourner</a>
+        </div>
+        
+    </form>
+</div>
+
+{% endblock %}

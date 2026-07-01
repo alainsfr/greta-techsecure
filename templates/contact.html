@@ -1,41 +1,52 @@
 {% extends 'base.html' %}
 {% block content %}
-<section class="contact-section">
-    <div class="contact-grid">
-        <div class="form-side">
-            <h2>CONTACTEZ-NOUS</h2>
-            <p>Une question, un projet ? Nos équipes vous répondront rapidement.</p>
-            
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="alert alert-{{ category }}">{{ message }}</div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
 
-            <form action="{{ url_for('contact') }}" method="POST" class="secure-form">
-                <div class="form-row">
-                    <input type="text" name="nom" placeholder="Nom" required>
-                    <input type="text" name="prenom" placeholder="Prénom" required>
-                </div>
-                <div class="form-row">
-                    <input type="email" name="email" placeholder="Email" required>
-                    <input type="text" name="telephone" placeholder="Téléphone">
-                </div>
-                <div class="form-group">
-                    <textarea name="message" rows="5" placeholder="Votre message..." required></textarea>
-                </div>
-                <button type="submit" class="btn-submit">ENVOYER LE MESSAGE</button>
-            </form>
+<div class="section" style="max-width: 700px;">
+    <h1>Contactez-nous</h1>
+    <p class="intro">Une question technique ou un projet de sécurisation ? Nos équipes d'ingénieurs vous répondent sous 24h.</p>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    
+    <form method="POST" style="background: white; border: 1px solid var(--bordure); padding: 30px; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); display: grid; gap: 15px;">
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+                <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Nom</label>
+                <input type="text" name="nom" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px;">
+            </div>
+            <div>
+                <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Prénom</label>
+                <input type="text" name="prenom" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px;">
+            </div>
         </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+                <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Adresse Email</label>
+                <input type="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px;">
+            </div>
+            <div>
+                <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Téléphone</label>
+                <input type="tel" name="telephone" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px;">
+            </div>
+        </div>
+        
+        <div>
+            <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Votre message</label>
+            <textarea name="message" rows="5" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px; font-family: Arial, sans-serif; resize: vertical;"></textarea>
+        </div>
+        
+        <div style="text-align: center; margin-top: 10px;">
+            <button type="submit" class="btn" style="width: 100%;">Envoyer la demande sécurisée</button>
+        </div>
+        
+    </form>
+</div>
 
-        <div class="info-side">
-            <h3>NOS COORDONNÉES</h3>
-            <p><strong>Siège Social :</strong> TechSecure Solutions<br>102 Avenue des Champs-Élysées<br>75008 Paris</p>
-            <p><strong>Téléphone :</strong> 01 02 03 04 05</p>
-            <p><strong>Email :</strong> contact@techsecure-solutions.com</p>
-        </div>
-    </div>
-</section>
 {% endblock %}

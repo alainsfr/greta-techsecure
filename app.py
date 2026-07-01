@@ -42,6 +42,73 @@ def filiales():
     conn.close()
     return render_template('filiales.html', filiales=liste_filiales)
 
+@app.route('/filiales/supprimer/<int:id>')
+def supprimer_filiale(id):
+    # SÉCURITÉ : Requête paramétrée pour éviter les injections SQL
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM filiales WHERE id = %s", (id,))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    
+    flash("L'agence a été supprimée avec succès.", "success")
+    return redirect(url_for('filiales'))
+
+@app.route('/filiales/voir/<int:id>')
+def voir_filiale(id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM filiales WHERE id = %s", (id,))
+    filiale = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    
+    if not filiale:
+        flash("Agence introuvable.", "error")
+        return redirect(url_for('filiales'))
+        
+    return render_template('voir.html', filiale=filiale)
+
+# 📝 NOUVELLE ROUTE : MODIFICATION FONCTIONNELLE ET SÉCURISÉE D'UNE FILIALE
+@app.route('/filiales/modifier/<int:id>', methods=['GET', 'POST'])
+def modifier_filiale(id):
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    
+    if request.method == 'POST':
+        ville = request.form['ville']
+        adresse = request.form['adresse']
+        responsable = request.form['responsable']
+        employes = request.form['employes']
+        ip = request.form['ip']
+        
+        # SÉCURITÉ AUDIT : Requête paramétrée contre les injections SQL
+        query = """
+            UPDATE filiales 
+            SET ville = %s, adresse = %s, responsable = %s, employes = %s, ip = %s 
+            WHERE id = %s
+        """
+        cursor.execute(query, (ville, adresse, responsable, employes, ip, id))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        
+        flash("La filiale a été mise à jour avec succès !", "success")
+        return redirect(url_for('filiales'))
+        
+    # GET : Récupération des données actuelles pour pré-remplir le formulaire
+    cursor.execute("SELECT * FROM filiales WHERE id = %s", (id,))
+    filiale = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    
+    if not filiale:
+        flash("Filiale introuvable pour modification.", "error")
+        return redirect(url_for('filiales'))
+        
+    return render_template('modifier.html', filiale=filiale)
+
 @app.route('/ajouter', methods=['GET', 'POST'])
 def ajouter_filiale():
     if request.method == 'POST':
@@ -60,6 +127,7 @@ def ajouter_filiale():
         cursor.close()
         conn.close()
         
+        flash("La filiale a été ajoutée avec succès !", "success")
         return redirect(url_for('filiales'))
     return render_template('ajouter.html')
 

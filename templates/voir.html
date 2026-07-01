@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="section" style="max-width: 750px;">
+    <div class="title-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h1 style="margin: 0;">Fiche Agence : {{ filiale.ville }}</h1>
+        <a href="{{ url_for('filiales') }}" class="btn" style="font-size: 13px; padding: 10px 20px;">← Retour à la liste</a>
+    </div>
+    
+    <p class="intro">Détails de configuration et métriques d'infrastructure de l'agence TechSecure Solutions.</p>
+
+    <div style="background: white; border: 1px solid var(--bordure); padding: 35px; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); display: grid; gap: 20px;">
+        
+        <div style="border-bottom: 1px solid var(--bordure); padding-bottom: 15px;">
+            <strong style="color: var(--bleu-nuit); display: block; margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">📍 Adresse Postale</strong>
+            <span style="font-size: 16px; color: #475569;">{{ filiale.adresse }}</span>
+        </div>
+
+        <div style="border-bottom: 1px solid var(--bordure); padding-bottom: 15px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                <strong style="color: var(--bleu-nuit); display: block; margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">👑 Responsable</strong>
+                <span style="font-size: 16px; font-weight: bold;">{{ filiale.responsable }}</span>
+            </div>
+            <div>
+                <strong style="color: var(--bleu-nuit); display: block; margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">👥 Effectif local</strong>
+                <span style="font-size: 16px; font-weight: bold; color: var(--bleu);">{{ filiale.employes }} collaborateurs</span>
+            </div>
+        </div>
+
+        <div>
+            <strong style="color: var(--bleu-nuit); display: block; margin-bottom: 5px; font-size: 14px; text-transform: uppercase;">🌐 Segment Réseau & Plage IP</strong>
+            <code style="background: #f1f5f9; padding: 6px 12px; border-radius: 6px; color: #0f172a; font-family: monospace; font-size: 15px; display: inline-block; font-weight: bold;">{{ filiale.ip }}</code>
+        </div>
+
+        <div style="margin-top: 15px; background: #eaf4ff; border-left: 5px solid var(--bleu); padding: 15px; border-radius: 6px;">
+            <p style="margin: 0; font-size: 14px; color: #0f172a; font-weight: 500;">🔒 Cette infrastructure est auditée en continu par nos services centraux de cybersécurité.</p>
+        </div>
+
+        <div style="display: flex; gap: 15px; margin-top: 10px;">
+            <a href="{{ url_for('modifier_filiale', id=filiale.id) }}" class="btn" style="background: var(--bleu-nuit); flex: 1; text-align: center; text-transform: none;">📝 Modifier les informations</a>
+            <a href="{{ url_for('supprimer_filiale', id=filiale.id) }}" class="btn" style="background: #ef4444; text-align: center; text-transform: none;" onclick="return confirm('⚠️ Supprimer cette agence ?');">🗑️ Supprimer</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

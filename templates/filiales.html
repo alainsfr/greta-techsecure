@@ -2,6 +2,14 @@
 {% block content %}
 
 <div class="section">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash" style="margin-bottom: 20px;">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
     <div class="title-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <h1 style="margin: 0; text-align: left;">Gestion des Filiales</h1>
         <a href="{{ url_for('ajouter_filiale') }}" class="btn" style="display: inline-block; white-space: nowrap; font-size: 13px; padding: 10px 20px; height: auto;">+ Ajouter une agence</a>
@@ -18,6 +26,7 @@
                 <th style="padding: 15px;">Responsable d'agence</th>
                 <th style="padding: 15px;">Effectif</th>
                 <th style="padding: 15px;">Plage IP Réseau</th>
+                <th style="padding: 15px; text-align: center;">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -29,10 +38,18 @@
                 <td style="padding: 15px; font-weight: 500;">{{ filiale.responsable }}</td>
                 <td style="padding: 15px;"><span style="background: #e2e8f0; padding: 4px 10px; border-radius: 12px; font-size: 13px; font-weight: bold; white-space: nowrap;">{{ filiale.employes }} col.</span></td>
                 <td style="padding: 15px;"><code style="background: #f1f5f9; padding: 4px 8px; border-radius: 4px; color: #0f172a; font-family: monospace;">{{ filiale.ip }}</code></td>
+                
+                <td style="padding: 15px; text-align: center; white-space: nowrap; font-size: 18px;">
+                    <a href="{{ url_for('voir_filiale', id=filiale.id) }}" title="Voir les détails" style="text-decoration: none; margin-right: 15px;">👁️</a>
+                    
+                    <a href="{{ url_for('modifier_filiale', id=filiale.id) }}" title="Modifier l'agence" style="text-decoration: none; margin-right: 15px;">📝</a>
+                    
+                    <a href="{{ url_for('supprimer_filiale', id=filiale.id) }}" title="Supprimer l'agence" style="text-decoration: none;" onclick="return confirm('⚠️ Êtes-vous sûr de vouloir supprimer définitivement cette agence ?');">🗑️</a>
+                </td>
             </tr>
             {% else %}
             <tr>
-                <td colspan="6" style="padding: 30px; text-align: center; color: #64748b;">Aucune filiale enregistrée dans la base de données.</td>
+                <td colspan="7" style="padding: 30px; text-align: center; color: #64748b;">Aucune filiale enregistrée dans la base de données.</td>
             </tr>
             {% endfor %}
         </tbody>
@@ -40,7 +57,7 @@
 
     <div class="stats">
         <div>
-            <strong>3</strong>
+            <strong>{{ filiales|length }}</strong>
             <span>Agences Actives</span>
         </div>
         <div>

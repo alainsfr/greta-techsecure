@@ -1,52 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="section" style="max-width: 700px;">
-    <h1>Contactez-nous</h1>
-    <p class="intro">Une question technique ou un projet de sécurisation ? Nos équipes d'ingénieurs vous répondent sous 24h.</p>
+<div class="section" style="max-width: 850px; line-height: 1.8;">
+    <h1>À Propos de Nous</h1>
+    <p class="intro" style="font-size: 20px;">Engagés pour la performance et la sécurité de vos données au quotidien.</p>
     
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="flash">{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-    
-    <form method="POST" style="background: white; border: 1px solid var(--bordure); padding: 30px; border-radius: 10px; box-shadow: 0 8px 25px rgba(0,0,0,0.05); display: grid; gap: 15px;">
+    <div style="background: white; border: 1px solid var(--bordure); padding: 35px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); color: #475569;">
+        <h3 style="color: var(--bleu-nuit); font-size: 22px; margin-top: 0;">Notre Mission</h3>
+        <p>Fondée avec la volonté de démocratiser la haute sécurité informatique, **TechSecure Solutions** accompagne aujourd'hui plus de 150 collaborateurs et de nombreuses PME dans la gestion de leurs infrastructures critiques et de leur souveraineté numérique.</p>
         
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-            <div>
-                <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Nom</label>
-                <input type="text" name="nom" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px;">
-            </div>
-            <div>
-                <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Prénom</label>
-                <input type="text" name="prenom" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px;">
-            </div>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
-            <div>
-                <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Adresse Email</label>
-                <input type="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px;">
-            </div>
-            <div>
-                <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Téléphone</label>
-                <input type="tel" name="telephone" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px;">
-            </div>
-        </div>
-        
-        <div>
-            <label style="display: block; font-weight: bold; margin-bottom: 6px; color: var(--bleu-nuit);">Votre message</label>
-            <textarea name="message" rows="5" required style="width: 100%; padding: 10px; border: 1px solid var(--bordure); border-radius: 6px; font-family: Arial, sans-serif; resize: vertical;"></textarea>
-        </div>
-        
-        <div style="text-align: center; margin-top: 10px;">
-            <button type="submit" class="btn" style="width: 100%;">Envoyer la demande sécurisée</button>
-        </div>
-        
-    </form>
+        <h3 style="color: var(--bleu-nuit); font-size: 22px; margin-top: 25px;">Nos Valeurs Fondamentales</h3>
+        <ul style="padding-left: 20px; display: grid; gap: 10px;">
+            <li><strong>🔒 Intégrité & Confidentialité :</strong> La sécurité n'est pas une option, c'est l'essence même de chacune de nos lignes de code et configurations systèmes.</li>
+            <li><strong>⚡ Proactivité :</strong> Superviser et administrer, c'est anticiper les menaces et pannes matérielles avant qu'elles n'impactent votre activité.</li>
+            <li><strong>🤝 Proximité :</strong> Grâce à nos agences de Paris, Lyon et Marseille, nos ingénieurs restent proches de vous pour des interventions ultra-rapides.</li>
+        </ul>
+    </div>
 </div>
 
 {% endblock %}
