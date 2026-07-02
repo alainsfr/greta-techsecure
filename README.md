@@ -46,37 +46,39 @@ Avoir installé Docker Desktop et Git sur votre machine.
 ```bash
 git clone https://github.com/alainsfr/greta-techsecure.git
 cd techsecure-solutions
-
+```
 ### 2. Démarrer l'infrastructure (Docker)
 
 Pour compiler les images et lancer l'application et la base de données en arrière-plan, exécutez la commande suivante dans votre terminal Git Bash ou PowerShell :
 ```bash
 docker compose up -d --build
-
+```
 ### 3. Accéder à l'application
 
 Une fois les conteneurs démarrés, ouvrez votre navigateur internet et rendez-vous sur :
 http://127.0.0.1:5000
 
-
-Commandes Utiles pour l'Administration
+---
+## 🔄Commandes Utiles pour l'Administration
 
 Forcer la reconstruction et vider le cache en cours de développement :
 
-   ```bash
+```bash
 docker compose up -d --build --force-recreate web
-
+```
 Arrêter proprement les services :
+
 ```bash
 docker compose down
+```
 
 Consulter les journaux de logs en temps réel (Audit) :
 ```bash
 docker compose logs -f web
-
-
-Architecture des Fichiers
-
+```
+---
+## 📁 Architecture des Fichiers
+```bash
 ├── app.py                  # Script principal Flask (Routes, Sécurité, Logique métier)
 ├── docker-compose.yml      # Orchestrateur des conteneurs (web, db, volumes et réseaux)
 ├── Dockerfile              # Instructions de build de l'image Python/Flask
@@ -94,3 +96,4 @@ Architecture des Fichiers
     ├── ajouter.html        # Formulaire de création d'agence
     ├── modifier.html       # Formulaire d'édition d'agence
     └── contact.html        # Formulaire de contact client avec messages flash
+    ```
